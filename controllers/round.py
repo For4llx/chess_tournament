@@ -1,8 +1,8 @@
+"""
 import sys
 
 sys.path.append('../chess_tournament')
 
-from data.player import *
 from models.Round import Round
 from views.round import round_form
 from helpers import get_rank
@@ -38,3 +38,4 @@ def update_score(rounds):
             print('winner 2')
         elif result == '3':
             print('égalité')
+"""

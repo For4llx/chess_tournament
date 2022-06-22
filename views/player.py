@@ -1,6 +1,5 @@
 def player_form():
-    print('Tournoi à 8 joueurs')
-    print('Entrer le nom complet des joueur. exemple: Dupont Jean')
+    print('Ajouter un joueur:\n')
 
     print('Nom:')
     last_name = str(input())
@@ -10,13 +9,13 @@ def player_form():
     birth_date = str(input())
     print('Sex:')
     sex = str(input())
-    print('classement:')
-    rank = str(input())
+    print('Classement:')
+    ranking = str(input())
 
     return {
       'last_name': last_name,
       'first_name': first_name,
       'birth_date': birth_date,
       'sex': sex,
-      'rank': rank
+      'ranking': ranking
     }

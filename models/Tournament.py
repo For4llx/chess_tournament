@@ -1,13 +1,22 @@
+import os
 from dataclasses import dataclass, field
 from datetime import date
+from tinydb import TinyDB
+
+os.makedirs(os.path.dirname('data/tournament.json'), exist_ok=True)
+tournament_database = TinyDB('data/tournament.json')
 
 @dataclass
 class Tournament:
     name: str
-    place: str = ''
-    time: int = 0
-    description: str =''
+    place: str
+    time_control: str
+    description: str
+    rounds_number: int = 4
+    date: str = date.today().strftime("%d/%m/%Y")
     rounds: list = field(default_factory=list)
     players: list = field(default_factory=list)
-    date: str = date.today().strftime("%d/%m/%Y")
-    rounds_number: int = 4
+
+
+    def save(tournament):
+      tournament_database.insert(tournament.__dict__)
