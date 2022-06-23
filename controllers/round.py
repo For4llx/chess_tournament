@@ -1,4 +1,3 @@
-"""
 import sys
 
 sys.path.append('../chess_tournament')
@@ -6,11 +5,14 @@ sys.path.append('../chess_tournament')
 from models.Round import Round
 from views.round import round_form
 from helpers import get_rank
+from tinydb import TinyDB, Query
 
-def create_round(players, round_counter):
+tournament_database = TinyDB('data/tournament.json')
+
+
+def create_round(players, tournament_id, round_counter):
     if round_counter == 1:
-        chess_matches = []
-        chess_match = []
+        matches = []
 
         players.sort(key=get_rank)
         players_number = len(players)
@@ -19,23 +21,26 @@ def create_round(players, round_counter):
         lower_class_players = players[middle_index:]
 
         for i in range(middle_index):
-            chess_match = [[upper_class_players[i], {'score': 0}] ,[lower_class_players[i], {'score': 0}]]
-            chess_matches.append(chess_match)
+            match = [[upper_class_players[i], {'score': 0}] ,[lower_class_players[i], {'score': 0}]]
+            matches.append(match)
 
-        chess_round = Round(f'Round_{round_counter}', chess_matches)
-
-        return chess_round
+        round = Round(f'Round_{round_counter}', matches)
+        round.save(tournament_id)
     else:
         pass
 
-def update_score(rounds):
-    results = round_form(rounds)
+def update_score(tournament_id, round_counter):
+    round_counter = round_counter-1
+    round = tournament_database.get(doc_id=tournament_id)['rounds'][round_counter]
 
-    for result in results:
+    results = round_form(round)
+    for index, result in enumerate(results):
         if result == '1':
-            print('winner 1')
+            round['matches'][index][0][1]['score'] = round['matches'][index][0][1]['score'] + 1 #score joueur 1
         elif result == '2':
-            print('winner 2')
+            round['matches'][index][1][1]['score'] = round['matches'][index][1][1]['score'] + 1 #score joueur 2
         elif result == '3':
-            print('égalité')
-"""
+            round['matches'][index][0][1]['score'] = round['matches'][index][0][1]['score'] + 0.5
+            round['matches'][index][1][1]['score'] = round['matches'][index][1][1]['score'] + 0.5
+    
+    tournament_database.update({'rounds': [round]}, doc_ids=[tournament_id])

@@ -26,8 +26,18 @@ while True:
                 print('1) Commencer le tournoi')
                 print('2) Ajouter un joueur')
                 option = str(input())
-                if option == '2':
+                if option == '1':
+                    round_counter = 1
+                    while round_counter <= tournament['rounds_number']:
+                        print(f'Tour {round_counter}')
+                        create_round(tournament['players'], tournament_id, round_counter)
+                        update_score(tournament_id, round_counter)
+                        round_counter = round_counter + 1
+
+                    print('Tournoi terminé')
+                elif option == '2':
                     create_player(tournament_id)
+                    break
 
             elif option == '3':
                 print('À bientôt !')
@@ -35,8 +45,6 @@ while True:
 
 """
 round_counter = 1
-tournament_1.players = add_players_to_tournament()
-#tournament_1.players = players
 while round_counter <= tournament_1.rounds_number:
     print(f'Tour {round_counter}')
     round = create_round(players, round_counter)
