@@ -12,8 +12,3 @@ class Round:
     matches: list
     start_time: str = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     end_time: str = ''
-
-    def save(round, tournament_id):
-        rounds = tournament_database.get(doc_id=tournament_id)['rounds']
-        rounds.append(round.__dict__)
-        tournament_database.update({'rounds': rounds}, doc_ids=[tournament_id])

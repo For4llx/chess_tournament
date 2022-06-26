@@ -1,7 +1,3 @@
-import sys
-
-sys.path.append('../chess_tournament')
-
 from models.Tournament import Tournament
 from views.tournament import tournament_form
 from models.Player import Player
@@ -28,7 +24,7 @@ def get_all_tournaments():
 def get_one_tournament(id):
     return tournament_database.get(doc_id=id)
 
-def create_player(tournament_id):
+def update_one_tournament_players(tournament_id):
     player = player_form()
     player = Player(
         player['last_name'],
@@ -38,5 +34,5 @@ def create_player(tournament_id):
         player['sex'])
     player.save(tournament_id)
 
-def get_players():
+def get_one_tournament_players():
     return player_database.all()

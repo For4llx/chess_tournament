@@ -37,9 +37,13 @@ def tournament_form():
         'description': description
     }
 
-def menu_tournament():
+def menu_tournament(tournaments):
     print('Tournoi:')
-    print('1) Créer un tournoi')
-    print('2) Sélectionner un tournoi')
-    print('3) Retour')
+    print('Sélectionner un tournoi')
+    for tournament in tournaments:
+        print(str(tournament.doc_id) + ')' + ' ' + tournament['name'])
+
+    #tournament = get_one_tournament(tournament_id)
+    #print(tournament['name'])
+
     return str(input())

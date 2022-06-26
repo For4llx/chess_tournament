@@ -2,10 +2,21 @@ from views.home import *
 from views.tournament import *
 from controllers.menuManager import *
 from controllers.round import *
+from controllers.player import *
 
-print('Bienvenue sur Chess Tournament')
 while True:
     option = menu_home()
+
+    if option == '1':
+        create_tournament()
+    elif option == '2':
+        create_player()
+    elif option == '3':
+        all_tournaments = get_all_tournaments()
+        tournament_id = menu_tournament(all_tournaments)
+        tournament = get_one_tournament(tournament_id)
+
+    """
     while True:
         if option == '1':
             option = menu_tournament()
@@ -13,6 +24,8 @@ while True:
             if option == '1':
                 create_tournament()
             elif option == '2':
+                create_player()
+            elif option == '3':
                 tournaments = get_all_tournaments()
                 ids = []
                 for counter, tournament in enumerate(tournaments, start=1):
@@ -42,7 +55,7 @@ while True:
             elif option == '3':
                 print('À bientôt !')
                 break
-
+"""
 """
 round_counter = 1
 while round_counter <= tournament_1.rounds_number:
