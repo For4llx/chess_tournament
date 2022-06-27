@@ -25,7 +25,7 @@ class Tournament:
         rounds.append(round.__dict__)
         tournament_database.update({'rounds': rounds}, doc_ids=[tournament_id])
 
-    def save_player(player, tournament_id):
+    def save_player(tournament_id, player_id):
         players = tournament_database.get(doc_id=tournament_id)['players']
         players.append(player.__dict__)
-        tournament_database.update({'players': players}, doc_ids=[tournament_id])
+        tournament_database.update({'players': players.doc_id}, doc_ids=[tournament_id])

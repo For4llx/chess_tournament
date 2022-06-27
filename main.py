@@ -1,9 +1,47 @@
-from views.home import *
-from views.tournament import *
-from controllers.menuManager import *
-from controllers.round import *
-from controllers.player import *
+from models.Tournament import Tournament
+from models.Player import Player
 
+from controllers.base import Controller
+from views.base import View
+
+def main():
+    view = View()
+    controller = Controller(view)
+    controller.main_menu(view)
+
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
 while True:
     option = menu_home()
 
@@ -15,8 +53,8 @@ while True:
         all_tournaments = get_all_tournaments()
         tournament_id = menu_tournament(all_tournaments)
         tournament = get_one_tournament(tournament_id)
-
-    """
+"""
+"""
     while True:
         if option == '1':
             option = menu_tournament()

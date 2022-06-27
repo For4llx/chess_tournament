@@ -19,3 +19,6 @@ def create_player():
 
 def get_all_players():
     return player_database.all()
+
+def get_one_player(id):
+    return player_database.get(doc_id=id)

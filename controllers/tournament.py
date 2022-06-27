@@ -7,7 +7,6 @@ from tinydb import TinyDB, Query
 tournament_database = TinyDB('data/tournament.json')
 player_database = TinyDB('data/player.json')
 
-
 def create_tournament():
     tournament = tournament_form()
     tournament = Tournament(
@@ -24,6 +23,13 @@ def get_all_tournaments():
 def get_one_tournament(id):
     return tournament_database.get(doc_id=id)
 
+def update_one_tournament_players(player_id, tournament_id):
+    tournament.save_player(tournament_id, player_id)
+
+def get_one_tournament_players():
+    return player_database.all()
+
+"""
 def update_one_tournament_players(tournament_id):
     player = player_form()
     player = Player(
@@ -33,6 +39,4 @@ def update_one_tournament_players(tournament_id):
         player['birth_date'],
         player['sex'])
     player.save(tournament_id)
-
-def get_one_tournament_players():
-    return player_database.all()
+"""
