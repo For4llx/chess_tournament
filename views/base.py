@@ -76,3 +76,11 @@ class View:
         print('2) Ajouter un nouveau joueur')
         print('3) Retour')
         return str(input())
+
+    def score_select(self, pair):
+        print('Sélectionner le résultat du match:')
+        print('1)' + ' ' + pair[0]['last_name'] + ' ' + pair[0]['first_name'])
+        print('2)' + ' ' + pair[1]['last_name'] + ' ' + pair[1]['first_name'])
+        print('3) Égalité')
+
+        return str(input())

@@ -16,11 +16,13 @@ class Tournament:
     date: str = date.today().strftime("%d/%m/%Y")
     rounds: list = field(default_factory=list)
     players: list = field(default_factory=list)
+    current_round = ''
+    pairs: list = field(default_factory=list)
 
     def save(tournament):
         tournament_database.insert(tournament.__dict__)
     
-    def save_round(round, tournament_id):
+    def save_round(tournament_id, round):
         rounds = tournament_database.get(doc_id=tournament_id)['rounds']
         rounds.append(round.__dict__)
         tournament_database.update({'rounds': rounds}, doc_ids=[tournament_id])

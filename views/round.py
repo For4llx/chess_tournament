@@ -13,3 +13,9 @@ def round_form(round):
         
     return results
 
+def select_next_round():
+    print('1) Ronde suivante')
+    print('2) Retour')
+
+    return str(input())
+

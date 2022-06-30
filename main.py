@@ -1,13 +1,13 @@
 from models.Tournament import Tournament
 from models.Player import Player
 
-from controllers.base import Controller
+from controllers.menu import MenuController
 from views.base import View
 
 def main():
     view = View()
-    controller = Controller(view)
-    controller.main_menu(view)
+    menu_controller = MenuController(view)
+    menu_controller.main_menu(view)
 
 main()
 

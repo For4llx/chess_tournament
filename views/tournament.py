@@ -43,7 +43,4 @@ def menu_tournament(tournaments):
     for tournament in tournaments:
         print(str(tournament.doc_id) + ')' + ' ' + tournament['name'])
 
-    #tournament = get_one_tournament(tournament_id)
-    #print(tournament['name'])
-
     return str(input())
